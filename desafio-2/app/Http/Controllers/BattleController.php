@@ -20,6 +20,10 @@ class BattleController extends Controller
 
         $poke1BaseStat = $poke1Dados->json()['stats'][0]['base_stat'] ?? 0;
         $poke2BaseStat = $poke2Dados->json()['stats'][0]['base_stat'] ?? 0;
+
+        if ($poke1BaseStat === $poke2BaseStat) {
+            return response()->json(['result' => 'os dois tem o mesmo poder, deu empate']);
+        }
     
         $winner = ($poke1BaseStat > $poke2BaseStat) ? $poke1 : $poke2;
     
